@@ -60,7 +60,7 @@
     "uniqid": "^5.2.0"
   },
   "devDependencies": {
-    "@babel/core": "^7.12.10",
+    "@babel/core": "^7.12.13",
     "@storybook/addon-actions": "^6.1.15",
     "@storybook/addon-docs": "^6.1.15",
     "@storybook/addon-knobs": "^6.1.15",
