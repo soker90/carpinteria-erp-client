@@ -63,7 +63,7 @@ const HeaderClientInvoice = ({
           onClick: _handleClickNewOrder,
           Icon: PlusCircleIcon,
           disableSvg: true,
-          label: 'Nuevo albarán',
+          label: 'Nuevo producto',
           disabled: Boolean(nInvoice),
         }]}
       />

@@ -1,14 +1,15 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { memo, useEffect } from 'react';
-import PropTypes from 'prop-types';
-import { useParams } from 'react-router';
 import { Container } from '@material-ui/core';
 
 import { LoadingScreen, Page } from 'components';
-import Header from './Header';
+import ProductsInvoice from 'components/ProductsInvoice';
+import PropTypes from 'prop-types';
+import { memo, useEffect } from 'react';
+import { useParams } from 'react-router';
 import { useStyles } from './ClientInvoice.styles';
 import ClientInvoiceCards from './ClientInvoiceCards';
 import DeliveryOrderInvoice from './DeliveryOrderInvoice';
+import Header from './Header';
 
 const ClientInvoice = ({
   getClientInvoice,
@@ -22,11 +23,11 @@ const ClientInvoice = ({
   iva,
   updateDataClientInvoice,
   createDeliveryOrder,
-  deliveryOrders,
   nInvoice,
   updateDOClientInvoice,
   deleteDOClientInvoice,
   getProducts,
+  products,
 }) => {
   const { idInvoice } = useParams();
   const classes = useStyles();
@@ -54,6 +55,17 @@ const ClientInvoice = ({
           nInvoice={nInvoice}
         />
 
+        <ProductsInvoice
+          products={products}
+          isEditable
+          showDeleteProductModal={() => {
+
+          }}
+          showEditProductModal={() => {
+
+          }}
+        />
+
         <ClientInvoiceCards
           total={total}
           taxBase={taxBase}
@@ -64,16 +76,14 @@ const ClientInvoice = ({
           nInvoice={nInvoice}
         />
 
-        {deliveryOrders.map(deliveryOrder => (
+        {false && (
           <DeliveryOrderInvoice
-            key={deliveryOrder._id}
-            deliveryOrder={deliveryOrder}
             isEditable={!nInvoice}
             updateDOClientInvoice={updateDOClientInvoice}
             deleteDOClientInvoice={deleteDOClientInvoice}
             id={_id}
           />
-        ))}
+        )}
 
       </Container>
     </Page>
@@ -89,7 +99,6 @@ ClientInvoice.propTypes = {
   date: PropTypes.number,
   updateDataClientInvoice: PropTypes.func.isRequired,
   createDeliveryOrder: PropTypes.func.isRequired,
-  deliveryOrders: PropTypes.array.isRequired,
   nInvoice: PropTypes.string,
   updateDOClientInvoice: PropTypes.func.isRequired,
   deleteDOClientInvoice: PropTypes.func.isRequired,
@@ -97,6 +106,7 @@ ClientInvoice.propTypes = {
   taxBase: PropTypes.number.isRequired,
   iva: PropTypes.number.isRequired,
   getProducts: PropTypes.func.isRequired,
+  products: PropTypes.array.isRequired,
 };
 
 ClientInvoice.displayName = 'ClientInvoice';
