@@ -1,14 +1,13 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { Container } from '@material-ui/core';
-
-import { LoadingScreen, Page } from 'components';
-import ProductsInvoice from 'components/ProductsInvoice';
 import PropTypes from 'prop-types';
 import { memo, useEffect } from 'react';
 import { useParams } from 'react-router';
+
+import { LoadingScreen, Page } from 'components';
+import ProductsInvoice from 'components/ProductsInvoice';
 import { useStyles } from './ClientInvoice.styles';
 import ClientInvoiceCards from './ClientInvoiceCards';
-import DeliveryOrderInvoice from './DeliveryOrderInvoice';
 import Header from './Header';
 
 const ClientInvoice = ({
@@ -24,8 +23,6 @@ const ClientInvoice = ({
   updateDataClientInvoice,
   createDeliveryOrder,
   nInvoice,
-  updateDOClientInvoice,
-  deleteDOClientInvoice,
   getProducts,
   products,
 }) => {
@@ -57,7 +54,6 @@ const ClientInvoice = ({
 
         <ProductsInvoice
           products={products}
-          isEditable
           showDeleteProductModal={() => {
 
           }}
@@ -75,16 +71,6 @@ const ClientInvoice = ({
           updateDataClientInvoice={updateDataClientInvoice}
           nInvoice={nInvoice}
         />
-
-        {false && (
-          <DeliveryOrderInvoice
-            isEditable={!nInvoice}
-            updateDOClientInvoice={updateDOClientInvoice}
-            deleteDOClientInvoice={deleteDOClientInvoice}
-            id={_id}
-          />
-        )}
-
       </Container>
     </Page>
   );
@@ -100,8 +86,6 @@ ClientInvoice.propTypes = {
   updateDataClientInvoice: PropTypes.func.isRequired,
   createDeliveryOrder: PropTypes.func.isRequired,
   nInvoice: PropTypes.string,
-  updateDOClientInvoice: PropTypes.func.isRequired,
-  deleteDOClientInvoice: PropTypes.func.isRequired,
   total: PropTypes.number.isRequired,
   taxBase: PropTypes.number.isRequired,
   iva: PropTypes.number.isRequired,

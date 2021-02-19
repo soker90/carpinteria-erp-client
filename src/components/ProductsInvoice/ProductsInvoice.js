@@ -21,8 +21,8 @@ const ProductsInvoice = ({
    * @param {Number} index
    * @private
    */
-  const _showDeleteProductModal = (row, index) => {
-    showDeleteProductModal(index);
+  const _showDeleteProductModal = row => {
+    showDeleteProductModal(row);
   };
 
   /**
@@ -31,8 +31,8 @@ const ProductsInvoice = ({
    * @param {Number} index
    * @private
    */
-  const _showEditProductModal = (row, index) => {
-    showEditProductModal(row, index);
+  const _showEditProductModal = row => {
+    showEditProductModal(row);
   };
 
   return (
