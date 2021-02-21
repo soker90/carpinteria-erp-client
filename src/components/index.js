@@ -8,6 +8,7 @@ export { default as ListActions } from './ListActions';
 export { default as LoadingScreen } from './LoadingScreen';
 export * from './Modals';
 export { default as Page } from './Page';
+export { default as ProductsInvoice } from './ProductsInvoice';
 export { default as ProviderExpandedInfo } from './ProviderExpandedInfo';
 export { default as ProviderInvoices } from './ProviderInvoices';
 export { default as TableMaterial } from './TableMaterial';

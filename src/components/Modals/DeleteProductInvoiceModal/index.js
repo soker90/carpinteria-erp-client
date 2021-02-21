@@ -1,1 +1,1 @@
-export { default } from './DeleteProductInvoiceModalContainer';
+export { default } from './DeleteProductInvoiceModal';

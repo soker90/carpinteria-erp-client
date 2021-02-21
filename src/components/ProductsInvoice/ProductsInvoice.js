@@ -14,15 +14,14 @@ const ProductsInvoice = ({
   showEditProductModal,
 }) => {
   const classes = useStyles();
-  // const productsClients = useSelector(({ productsClients: pc }) => pc.products);
 
   /**
    * Muesta el modal de confirmación para borrar el elemento
    * @param {Number} index
    * @private
    */
-  const _showDeleteProductModal = row => {
-    showDeleteProductModal(row);
+  const _showDeleteProductModal = ({ _id }) => {
+    showDeleteProductModal(_id);
   };
 
   /**

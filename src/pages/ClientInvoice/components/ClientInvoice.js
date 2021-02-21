@@ -1,11 +1,14 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { Container } from '@material-ui/core';
 import PropTypes from 'prop-types';
-import { memo, useEffect } from 'react';
+import {
+  memo, useCallback, useEffect, useState,
+} from 'react';
 import { useParams } from 'react-router';
 
-import { LoadingScreen, Page } from 'components';
-import ProductsInvoice from 'components/ProductsInvoice';
+import {
+  LoadingScreen, Page, DeleteProductInvoiceModal, ProductsInvoice,
+} from 'components';
 import { useStyles } from './ClientInvoice.styles';
 import ClientInvoiceCards from './ClientInvoiceCards';
 import Header from './Header';
@@ -25,8 +28,10 @@ const ClientInvoice = ({
   nInvoice,
   getProducts,
   products,
+  deleteProduct,
 }) => {
   const { idInvoice } = useParams();
+  const [deleteId, setDeleteId] = useState(undefined);
   const classes = useStyles();
 
   useEffect(() => {
@@ -38,6 +43,14 @@ const ClientInvoice = ({
   }, []);
 
   useEffect(() => () => resetClientInvoiceState(), []);
+
+  const _closeDeleteModal = useCallback(() => {
+    setDeleteId(undefined);
+  }, []);
+
+  const showModalDelete = useCallback(product => {
+    setDeleteId(product);
+  }, []);
 
   if (!_id) return <LoadingScreen />;
 
@@ -54,9 +67,7 @@ const ClientInvoice = ({
 
         <ProductsInvoice
           products={products}
-          showDeleteProductModal={() => {
-
-          }}
+          showDeleteProductModal={showModalDelete}
           showEditProductModal={() => {
 
           }}
@@ -72,6 +83,12 @@ const ClientInvoice = ({
           nInvoice={nInvoice}
         />
       </Container>
+      <DeleteProductInvoiceModal
+        close={_closeDeleteModal}
+        id={_id}
+        product={deleteId}
+        action={deleteProduct}
+      />
     </Page>
   );
 };
@@ -91,6 +108,7 @@ ClientInvoice.propTypes = {
   iva: PropTypes.number.isRequired,
   getProducts: PropTypes.func.isRequired,
   products: PropTypes.array.isRequired,
+  deleteProduct: PropTypes.func.isRequired,
 };
 
 ClientInvoice.displayName = 'ClientInvoice';
