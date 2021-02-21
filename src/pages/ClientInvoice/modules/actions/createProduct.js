@@ -49,14 +49,13 @@ const _createProductError = error => ({
  */
 export const createProduct = ({
   invoice,
-  deliveryOrder,
   model,
 }, callback) => async dispatch => {
   dispatch(_createProductRequest());
 
   try {
     const { data } = await axios.post(
-      `client/invoices/${invoice}/deliveryOrder/${deliveryOrder}/product`,
+      `client/invoices/${invoice}/product`,
       model
     );
 

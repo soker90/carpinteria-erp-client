@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useCallback, useState } from 'react';
 import CheckCircleOutlinedIcon from '@material-ui/icons/CheckCircleOutlined';
 import PropTypes from 'prop-types';
 import GetAppIcon from '@material-ui/icons/GetApp';
@@ -8,21 +8,30 @@ import { Header } from 'components';
 import { downloadFile } from 'utils';
 import ConfirmInvoiceModal from '../../modals/ConfirmInvoiceModal';
 import DeleteInvoiceModal from '../../modals/DeleteInvoiceModal';
+import ProductOrderModal from '../../modals/ProductOrderModal/ProductOrderModalContainer';
 
 const HeaderClientInvoice = ({
-  client, nameClient, nInvoice, createDeliveryOrder, id,
+  client,
+  nameClient,
+  nInvoice,
+  id,
 }) => {
   const [showConfirmModal, setShowConfirmModal] = useState(false);
   const [showDeleteModal, setShowDeleteModal] = useState(false);
+  const [showAddProduct, setShowAddProduct] = useState(false);
 
   const _handleClickDownload = () => () => downloadFile(
     `client/invoices/export/${id}`,
     `Factura ${nInvoice} - ${nameClient}.ods`,
   );
 
-  const _handleClickNewOrder = () => {
-    createDeliveryOrder(id);
+  const _handleClickNewProduct = () => {
+    setShowAddProduct(true);
   };
+
+  const _closeNewProduct = useCallback(() => {
+    setShowAddProduct(false);
+  }, []);
 
   return (
     <>
@@ -60,7 +69,7 @@ const HeaderClientInvoice = ({
         }, {
           variant: 'contained',
           color: 'primary',
-          onClick: _handleClickNewOrder,
+          onClick: _handleClickNewProduct,
           Icon: PlusCircleIcon,
           disableSvg: true,
           label: 'Nuevo producto',
@@ -69,6 +78,11 @@ const HeaderClientInvoice = ({
       />
       <ConfirmInvoiceModal show={showConfirmModal} setShow={setShowConfirmModal} />
       <DeleteInvoiceModal show={showDeleteModal} setShow={setShowDeleteModal} />
+      <ProductOrderModal
+        invoice={id}
+        show={showAddProduct}
+        close={_closeNewProduct}
+      />
     </>
   );
 };
@@ -77,7 +91,6 @@ HeaderClientInvoice.propTypes = {
   nameClient: PropTypes.string.isRequired,
   client: PropTypes.string.isRequired,
   nInvoice: PropTypes.string,
-  createDeliveryOrder: PropTypes.func.isRequired,
   id: PropTypes.string,
 };
 

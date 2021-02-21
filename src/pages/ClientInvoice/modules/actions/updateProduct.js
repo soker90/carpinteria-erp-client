@@ -43,9 +43,8 @@ const _updateProductError = error => ({
 });
 
 /**
- * Actualiza un producto del albarán
+ * Actualiza un producto de la factura
  * @param {string} invoice
- * @param {string} deliveryOrder
  * @param {Object} model
  * @param {string} product
  * @param {function} callback
@@ -53,7 +52,6 @@ const _updateProductError = error => ({
  */
 export const updateProduct = ({
   invoice,
-  deliveryOrder,
   model,
   product,
 }, callback) => async dispatch => {
@@ -61,7 +59,7 @@ export const updateProduct = ({
 
   try {
     const { data } = await axios.patch(
-      `client/invoices/${invoice}/deliveryOrder/${deliveryOrder}/product/${product}`,
+      `client/invoices/${invoice}/product/${product}`,
       model,
     );
 
