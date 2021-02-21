@@ -9,6 +9,7 @@ import { useParams } from 'react-router';
 import {
   LoadingScreen, Page, DeleteProductInvoiceModal, ProductsInvoice,
 } from 'components';
+import ProductOrderModal from '../modals/ProductOrderModal/ProductOrderModalContainer';
 import { useStyles } from './ClientInvoice.styles';
 import ClientInvoiceCards from './ClientInvoiceCards';
 import Header from './Header';
@@ -32,6 +33,7 @@ const ClientInvoice = ({
 }) => {
   const { idInvoice } = useParams();
   const [deleteId, setDeleteId] = useState(undefined);
+  const [editId, setEditId] = useState(false);
   const classes = useStyles();
 
   useEffect(() => {
@@ -52,6 +54,14 @@ const ClientInvoice = ({
     setDeleteId(product);
   }, []);
 
+  const _closeEditModal = useCallback(() => {
+    setEditId(false);
+  }, []);
+
+  const showEditModal = useCallback(product => {
+    setEditId(product);
+  }, []);
+
   if (!_id) return <LoadingScreen />;
 
   return (
@@ -68,9 +78,7 @@ const ClientInvoice = ({
         <ProductsInvoice
           products={products}
           showDeleteProductModal={showModalDelete}
-          showEditProductModal={() => {
-
-          }}
+          showEditProductModal={showEditModal}
         />
 
         <ClientInvoiceCards
@@ -88,6 +96,11 @@ const ClientInvoice = ({
         id={_id}
         product={deleteId}
         action={deleteProduct}
+      />
+      <ProductOrderModal
+        invoice={_id}
+        show={editId}
+        close={_closeEditModal}
       />
     </Page>
   );
