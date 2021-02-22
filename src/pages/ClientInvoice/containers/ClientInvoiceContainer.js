@@ -3,6 +3,7 @@ import ClientInvoice from '../components/ClientInvoice';
 import {
   createDeliveryOrder,
   deleteDOClientInvoice,
+  deleteProduct,
   getClientInvoice,
   resetClientInvoiceState,
   updateDataClientInvoice,
@@ -20,6 +21,7 @@ const mapDispatchToProps = {
   updateDOClientInvoice,
   deleteDOClientInvoice,
   getProducts,
+  deleteProduct,
 };
 
 export default connect(

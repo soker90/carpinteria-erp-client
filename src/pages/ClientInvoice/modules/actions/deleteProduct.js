@@ -17,7 +17,7 @@ const _deleteProductSuccess = () => ({
   type: DELETE_PRODUCT.SUCCESS,
   payload: {
     level: 'success',
-    message: 'Producto borradao',
+    message: 'Producto borrado',
   },
 });
 
@@ -43,20 +43,20 @@ const _deleteProductError = error => ({
 });
 
 /**
- * Elimina un producto del albarán
- * @param {Object} data
+ * Elimina un producto de la factura
+ * @param {String} invoice
+ * @param {String} product
  * @returns {function(...[*]=)}
  */
-export const deleteProduct = ({
+export const deleteProduct = (
   invoice,
-  deliveryOrder,
   product,
-}) => async dispatch => {
+) => async dispatch => {
   dispatch(_deleteProductRequest());
 
   try {
     const { data } = await axios.delete(
-      `client/invoices/${invoice}/deliveryOrder/${deliveryOrder}/product/${product}`,
+      `client/invoices/${invoice}/product/${product}`,
     );
 
     dispatch(_deleteProductSuccess());

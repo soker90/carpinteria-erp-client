@@ -15,7 +15,6 @@ const ProductOrderModal = ({
   action,
   createProduct,
   invoice,
-  deliveryOrder,
   updateProduct,
   products,
   ...rest
@@ -56,14 +55,13 @@ const ProductOrderModal = ({
       const model = {
         name: state.name,
         price: Number(state.price),
-        weight: Number(state.weight),
-        unit: state.unit,
+        unit: Number(state.unit),
+        iva: Number(state.iva),
       };
 
       (typeof show === 'boolean' ? createProduct : updateProduct)({
         model,
         invoice,
-        deliveryOrder,
         product: show?._id,
       }, close);
     } catch (e) {
@@ -146,7 +144,6 @@ ProductOrderModal.propTypes = {
   close: PropTypes.func.isRequired,
   createProduct: PropTypes.func.isRequired,
   invoice: PropTypes.string.isRequired,
-  deliveryOrder: PropTypes.string.isRequired,
   product: PropTypes.object,
   products: PropTypes.array.isRequired,
 };

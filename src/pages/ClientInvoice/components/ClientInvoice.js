@@ -1,14 +1,18 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { memo, useEffect } from 'react';
-import PropTypes from 'prop-types';
-import { useParams } from 'react-router';
 import { Container } from '@material-ui/core';
+import PropTypes from 'prop-types';
+import {
+  memo, useCallback, useEffect, useState,
+} from 'react';
+import { useParams } from 'react-router';
 
-import { LoadingScreen, Page } from 'components';
-import Header from './Header';
+import {
+  LoadingScreen, Page, DeleteProductInvoiceModal, ProductsInvoice,
+} from 'components';
+import ProductOrderModal from '../modals/ProductOrderModal/ProductOrderModalContainer';
 import { useStyles } from './ClientInvoice.styles';
 import ClientInvoiceCards from './ClientInvoiceCards';
-import DeliveryOrderInvoice from './DeliveryOrderInvoice';
+import Header from './Header';
 
 const ClientInvoice = ({
   getClientInvoice,
@@ -22,13 +26,14 @@ const ClientInvoice = ({
   iva,
   updateDataClientInvoice,
   createDeliveryOrder,
-  deliveryOrders,
   nInvoice,
-  updateDOClientInvoice,
-  deleteDOClientInvoice,
   getProducts,
+  products,
+  deleteProduct,
 }) => {
   const { idInvoice } = useParams();
+  const [deleteId, setDeleteId] = useState(undefined);
+  const [editId, setEditId] = useState(false);
   const classes = useStyles();
 
   useEffect(() => {
@@ -40,6 +45,22 @@ const ClientInvoice = ({
   }, []);
 
   useEffect(() => () => resetClientInvoiceState(), []);
+
+  const _closeDeleteModal = useCallback(() => {
+    setDeleteId(undefined);
+  }, []);
+
+  const showModalDelete = useCallback(product => {
+    setDeleteId(product);
+  }, []);
+
+  const _closeEditModal = useCallback(() => {
+    setEditId(false);
+  }, []);
+
+  const showEditModal = useCallback(product => {
+    setEditId(product);
+  }, []);
 
   if (!_id) return <LoadingScreen />;
 
@@ -54,6 +75,12 @@ const ClientInvoice = ({
           nInvoice={nInvoice}
         />
 
+        <ProductsInvoice
+          products={products}
+          showDeleteProductModal={showModalDelete}
+          showEditProductModal={showEditModal}
+        />
+
         <ClientInvoiceCards
           total={total}
           taxBase={taxBase}
@@ -63,19 +90,18 @@ const ClientInvoice = ({
           updateDataClientInvoice={updateDataClientInvoice}
           nInvoice={nInvoice}
         />
-
-        {deliveryOrders.map(deliveryOrder => (
-          <DeliveryOrderInvoice
-            key={deliveryOrder._id}
-            deliveryOrder={deliveryOrder}
-            isEditable={!nInvoice}
-            updateDOClientInvoice={updateDOClientInvoice}
-            deleteDOClientInvoice={deleteDOClientInvoice}
-            id={_id}
-          />
-        ))}
-
       </Container>
+      <DeleteProductInvoiceModal
+        close={_closeDeleteModal}
+        id={_id}
+        product={deleteId}
+        action={deleteProduct}
+      />
+      <ProductOrderModal
+        invoice={_id}
+        show={editId}
+        close={_closeEditModal}
+      />
     </Page>
   );
 };
@@ -89,14 +115,13 @@ ClientInvoice.propTypes = {
   date: PropTypes.number,
   updateDataClientInvoice: PropTypes.func.isRequired,
   createDeliveryOrder: PropTypes.func.isRequired,
-  deliveryOrders: PropTypes.array.isRequired,
   nInvoice: PropTypes.string,
-  updateDOClientInvoice: PropTypes.func.isRequired,
-  deleteDOClientInvoice: PropTypes.func.isRequired,
   total: PropTypes.number.isRequired,
   taxBase: PropTypes.number.isRequired,
   iva: PropTypes.number.isRequired,
   getProducts: PropTypes.func.isRequired,
+  products: PropTypes.array.isRequired,
+  deleteProduct: PropTypes.func.isRequired,
 };
 
 ClientInvoice.displayName = 'ClientInvoice';

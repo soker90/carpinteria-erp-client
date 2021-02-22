@@ -1,9 +1,8 @@
 import { memo } from 'react';
 import PropTypes from 'prop-types';
+import { ConfirmModal } from 'components/Modals';
 
-import { ConfirmModal } from 'components';
-
-const DeleteConfirmationModal = ({
+const DeleteProductInvoiceModal = ({
   action, id, product, ...rest
 }) => {
   /**
@@ -18,8 +17,9 @@ const DeleteConfirmationModal = ({
   return (
     <ConfirmModal
       {...rest}
-      title='Eliminar producto del albarán'
-      description='¿Seguro que quieres quitar el producto del albarán?'
+      show={Boolean(product)}
+      title='Quitar producto'
+      description='¿Seguro que quieres quitar el producto?'
       action={_handleSend}
       actions={[
         { onClick: rest.close, value: 'Cerrar', 'data-cy': 'modal-close-button' },
@@ -35,14 +35,13 @@ const DeleteConfirmationModal = ({
   );
 };
 
-DeleteConfirmationModal.propTypes = {
+DeleteProductInvoiceModal.propTypes = {
   close: PropTypes.func,
-  show: PropTypes.bool,
-  product: PropTypes.string.isRequired,
+  product: PropTypes.string,
   id: PropTypes.string.isRequired,
   action: PropTypes.func.isRequired,
 };
 
-DeleteConfirmationModal.displayName = 'DeleteConfirmationModal';
-export const story = DeleteConfirmationModal;
-export default memo(DeleteConfirmationModal);
+DeleteProductInvoiceModal.displayName = 'DeleteConfirmationModal';
+export const story = DeleteProductInvoiceModal;
+export default memo(DeleteProductInvoiceModal);

@@ -16,7 +16,7 @@ const INITIAL_STATE = {
   _id: '',
   client: '',
   nameClient: '',
-  deliveryOrders: [],
+  products: [],
   date: null,
   total: 0,
   iva: 0,
