@@ -19,11 +19,6 @@ export const navConfig = [
         href: '/app/informes/inicio',
       },
       {
-        title: 'Productos',
-        icon: ShoppingCart,
-        href: '/app/informes/productos',
-      },
-      {
         title: 'Facturación',
         icon: DescriptionIcon,
         href: `/app/informes/facturacion/${year}`,
@@ -36,34 +31,32 @@ export const navConfig = [
     ],
   },
   {
-    subheader: 'Administración',
+    subheader: 'Clientes',
+    items: [
+      {
+        title: 'Listado',
+        icon: UsersIcon,
+        href: '/app/clientes/listado',
+      },
+      {
+        title: 'Libro',
+        icon: MenuBookIcon,
+        href: `/app/clientes/libro/${year}`,
+      },
+      {
+        title: 'Productos',
+        icon: ShoppingCart,
+        href: '/app/clientes/productos',
+      },
+    ],
+  },
+  {
+    subheader: 'Proveedores',
     items: [
       {
         title: 'Provedores',
         icon: UsersIcon,
         href: '/app/proveedores',
-      },
-      {
-        title: 'Clientes',
-        icon: UsersIcon,
-        href: '/app/clientes',
-        items: [
-          {
-            title: 'Listado',
-            icon: UsersIcon,
-            href: '/app/clientes/listado',
-          },
-          {
-            title: 'Libro',
-            icon: MenuBookIcon,
-            href: `/app/clientes/libro/${year}`,
-          },
-          {
-            title: 'Productos',
-            icon: ShoppingCart,
-            href: '/app/clientes/productos',
-          },
-        ],
       },
       {
         title: 'Gastos',

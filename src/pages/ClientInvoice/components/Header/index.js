@@ -73,7 +73,6 @@ const HeaderClientInvoice = ({
           Icon: PlusCircleIcon,
           disableSvg: true,
           label: 'Nuevo producto',
-          disabled: Boolean(nInvoice),
         }]}
       />
       <ConfirmInvoiceModal show={showConfirmModal} setShow={setShowConfirmModal} />
