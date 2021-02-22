@@ -29,10 +29,10 @@ const ClientInvoiceTotals = props => {
 
   /**
    * Return the buttons of the card
-   * @returns {Array || false}
+   * @returns {Array}
    * @private
    */
-  const _getActions = () => (props.isEditable ? [
+  const _getActions = () => [
     <Tooltip title='Editar' key={uniqId()}>
       <IconButton
         size='small'
@@ -41,7 +41,7 @@ const ClientInvoiceTotals = props => {
         <EditIcon />
       </IconButton>
     </Tooltip>,
-  ] : false);
+  ];
 
   return (
     <>
@@ -69,9 +69,8 @@ ClientInvoiceTotals.propTypes = {
   total: PropTypes.number.isRequired,
   taxBase: PropTypes.number.isRequired,
   iva: PropTypes.number.isRequired,
-  isEditable: PropTypes.bool.isRequired,
 };
 
-ClientInvoiceTotals.displayName = 'DeliveryOrderTotals';
+ClientInvoiceTotals.displayName = 'ClientInvoiceTotals';
 export const story = ClientInvoiceTotals;
 export default memo(ClientInvoiceTotals);

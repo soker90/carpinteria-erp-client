@@ -23,7 +23,6 @@ const ClientInvoiceCards = ({
         <ClientInvoiceData
           date={date}
           nInvoice={nInvoice}
-          readOnly={Boolean(nInvoice)}
           updateData={updateDataClientInvoice}
           id={id}
         />
@@ -33,7 +32,6 @@ const ClientInvoiceCards = ({
           total={total}
           taxBase={taxBase}
           iva={iva}
-          isEditable={!nInvoice}
         />
       </Grid>
     </Grid>

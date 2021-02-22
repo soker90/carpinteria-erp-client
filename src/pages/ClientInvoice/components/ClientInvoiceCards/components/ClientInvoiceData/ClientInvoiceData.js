@@ -10,7 +10,6 @@ import { useStyles } from './ClientInvoiceData.styles';
 
 const ClientInvoiceData = ({
   date,
-  readOnly,
   updateData,
   nInvoice,
   id,
@@ -33,7 +32,6 @@ const ClientInvoiceData = ({
             label='Fecha'
             value={date}
             onChange={_handleChangeDate}
-            readOnly={readOnly}
           />
           <Grid item xs={12} md={6}>
             <ItemCard label='Nº Factura' value={nInvoice} />
@@ -47,7 +45,6 @@ const ClientInvoiceData = ({
 ClientInvoiceData.propTypes = {
   date: PropTypes.number,
   nInvoice: PropTypes.string,
-  readOnly: PropTypes.bool.isRequired,
   updateData: PropTypes.func.isRequired,
   id: PropTypes.string.isRequired,
 };
