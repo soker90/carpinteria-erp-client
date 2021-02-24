@@ -1,10 +1,10 @@
-import { memo } from 'react';
+import { memo, useMemo } from 'react';
 import PropTypes from 'prop-types';
 import ExpandLessIcon from '@material-ui/icons/ExpandLess';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-import PostAddIcon from '@material-ui/icons/PostAdd';
 
 import { Header } from 'components';
+import { getButtons } from './utils';
 
 const HeaderProvider = ({
   title,
@@ -12,10 +12,28 @@ const HeaderProvider = ({
   expanded,
   clientId,
   createClientInvoice,
+  currentTab,
 }) => {
   const _handleClickNewInvoice = () => {
     createClientInvoice(clientId);
   };
+
+  const _handleClickNewDeliveryOrder = () => {
+
+  };
+
+  const _handleClickNewBudget = () => {
+
+  };
+
+  const _buttons = useMemo(() => (
+    getButtons({
+      currentTab,
+      _handleClickNewBudget,
+      _handleClickNewDeliveryOrder,
+      _handleClickNewInvoice,
+      // eslint-disable-next-line
+    })), [currentTab]);
 
   return (
     <Header
@@ -32,13 +50,7 @@ const HeaderProvider = ({
         disableSvg: true,
         label: expanded ? 'Ocultar información' : 'Mostrar información',
       }]}
-      buttons={[{
-        variant: 'contained',
-        onClick: _handleClickNewInvoice,
-        Icon: PostAddIcon,
-        disableSvg: true,
-        label: 'Crear factura',
-      }]}
+      buttons={_buttons}
     />
   );
 };
@@ -49,6 +61,7 @@ HeaderProvider.propTypes = {
   expanded: PropTypes.bool.isRequired,
   createClientInvoice: PropTypes.func.isRequired,
   clientId: PropTypes.string,
+  currentTab: PropTypes.string.isRequired,
 };
 
 HeaderProvider.displayName = 'Client-Header';

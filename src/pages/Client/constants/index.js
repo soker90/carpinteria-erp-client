@@ -1,10 +1,11 @@
 /**
  * Pestañas del cliente
- * @type {{DELIVERY_ORDERS: string, INVOICES: string}}
+ * @type {{DELIVERY_ORDERS: string, BUDGET: string, INVOICES: string}}
  */
 export const TABS = {
-  DELIVERY_ORDERS: 'Albaranes',
   INVOICES: 'Facturas',
+  BUDGET: 'Presupuestos',
+  DELIVERY_ORDERS: 'Albaranes',
 };
 
 /**
@@ -14,4 +15,5 @@ export const TABS = {
 export const HASH_TABS = {
   '#Albaranes': TABS.DELIVERY_ORDERS,
   '#Facturas': TABS.INVOICES,
+  '#Presupuestos': TABS.BUDGET,
 };

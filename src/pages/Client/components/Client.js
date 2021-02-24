@@ -1,30 +1,38 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { memo, useEffect, useState } from 'react';
+import {
+  lazy, memo, useEffect, useState,
+} from 'react';
 import { Box, Container } from '@material-ui/core';
 import PropTypes from 'prop-types';
-import { useParams } from 'react-router';
+import { useLocation, useParams } from 'react-router';
 
-import { LoadingScreen, Page } from 'components';
+import { HashTabs, LoadingScreen, Page } from 'components';
+
+import { TABS, HASH_TABS } from '../constants';
 import ClientExpandedInfo from './ClientExpandedInfo';
 import Header from './Header';
-import ClientInvoices from './ClientInvoices';
 import { useStyles } from './Client.styles';
 
 const Client = ({
   client,
   getClient,
-  invoices,
-  count,
-  getClientInvoices,
   createClientInvoice,
 }) => {
   const classes = useStyles();
   const { id } = useParams();
+  const { hash } = useLocation();
   const [expand, setExpand] = useState(false);
+  const [currentTab, setCurrentTab] = useState(TABS.INVOICES);
 
   useEffect(() => {
     if (id) getClient(id);
   }, [id, getClient]);
+
+  useEffect(() => {
+    // eslint-disable-next-line
+    HASH_TABS[hash]
+    && setCurrentTab(HASH_TABS[hash]);
+  }, [hash]);
 
   /**
    * Expande o contrae la información
@@ -36,6 +44,21 @@ const Client = ({
 
   if (!id) return <LoadingScreen />;
 
+  /**
+   * imports de los componentes de cada pestaña
+   * @private
+   */
+  const _components = {
+    [TABS.INVOICES]: lazy(() => import('./ClientInvoices')),
+    [TABS.BUDGET]: lazy(() => import('./ClientBudgets')),
+    [TABS.DELIVERY_ORDERS]: lazy(() => import('./ClientDeliveryOrders')),
+  };
+
+  /**
+   * Componente de la pestaña actual
+   */
+  const TabComponent = _components[currentTab];
+
   return (
     <Page className={classes.root} title={client.name}>
       <Container maxWidth={false}>
@@ -45,6 +68,7 @@ const Client = ({
           title={client?.name}
           clientId={id}
           createClientInvoice={createClientInvoice}
+          currentTab={currentTab}
         />
 
         <ClientExpandedInfo
@@ -52,12 +76,11 @@ const Client = ({
           client={client}
         />
 
+        <HashTabs currentTab={currentTab} tabs={Object.values(TABS)} />
+
         <Box py={3} pb={6}>
-          <ClientInvoices
+          <TabComponent
             idClient={id}
-            invoices={invoices}
-            count={count}
-            getClientInvoices={getClientInvoices}
           />
         </Box>
 
@@ -69,9 +92,6 @@ const Client = ({
 Client.propTypes = {
   client: PropTypes.object.isRequired,
   getClient: PropTypes.func.isRequired,
-  invoices: PropTypes.array.isRequired,
-  count: PropTypes.number.isRequired,
-  getClientInvoices: PropTypes.func.isRequired,
   createClientInvoice: PropTypes.func.isRequired,
 };
 
