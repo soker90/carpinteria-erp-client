@@ -17,7 +17,7 @@ const TopBar = ({ className }) => {
           alt='Logo'
           src='/static/logo.png'
           height='45rem'
-          width='100rem'
+          width='113rem'
         />
       </Toolbar>
     </AppBar>
