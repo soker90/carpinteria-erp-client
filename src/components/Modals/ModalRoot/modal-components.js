@@ -1,7 +1,3 @@
-import providerModals from 'pages/Providers/ProviderGeneral/modals';
-import deliveryOrderModals from 'pages/DeliveryOrder/modals';
+import providerModals from 'pages/Providers/Provider/modals';
 
-export default {
-  ...providerModals,
-  ...deliveryOrderModals,
-};
+export default providerModals;
