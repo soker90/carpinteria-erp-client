@@ -1,42 +1,75 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { memo, useEffect, useMemo } from 'react';
+/* eslint-disable */
+
+import { memo, useEffect, useState } from 'react';
+import {
+  Box, Container,
+} from '@material-ui/core';
 import PropTypes from 'prop-types';
-import { useHistory, useParams } from 'react-router';
+import { useParams } from 'react-router';
 
-import { TYPE_PROVIDER } from 'constants/providers';
-import { LoadingScreen } from 'components';
+import {
+  LoadingScreen, Page, ProviderExpandedInfo, ProviderInvoices,
+} from 'components';
+import Header from './Header';
 
-const Provider = ({
-  provider, getProvider,
+import { useStyles } from './Provider.styles';
+
+const ProviderExpense = ({
+  provider, billing, getProvider, ...props
 }) => {
+  const classes = useStyles();
   const { idProvider } = useParams();
-  const history = useHistory();
-
-  const routesByType = useMemo(() => ({
-    [TYPE_PROVIDER.GENERAL]: '/app/proveedores/general',
-    [TYPE_PROVIDER.EXPENSES]: '/app/gastos',
-    undefined: 'general',
-  }), []);
+  const [expand, setExpand] = useState(false);
 
   useEffect(() => {
     if (idProvider) getProvider(idProvider);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [idProvider]);
 
-  useEffect(() => {
-    const composeRoute = `${routesByType[provider.type]}/${idProvider}${history.location.hash || ''}`;
-    if (provider._id === idProvider) history.replace(composeRoute);
-  }, [provider]);
+  /**
+   * Expande o contrae la información
+   * @private
+   */
+  const _toggleExpand = () => {
+    setExpand(!expand);
+  };
 
-  return <LoadingScreen />;
+  if (!idProvider) return <LoadingScreen />;
+
+  return (
+    <Page className={classes.root} title={provider.name}>
+      <Container maxWidth={false}>
+        <Header
+          expanded={expand}
+          onExpand={_toggleExpand}
+          title={provider?.name}
+          idProvider={idProvider}
+          note={provider?.note}
+          {...props}
+        />
+        <ProviderExpandedInfo
+          expanded={expand}
+          billing={billing}
+          provider={provider}
+        />
+
+        <Box py={3} pb={6}>
+          <ProviderInvoices />
+        </Box>
+
+      </Container>
+    </Page>
+  );
 };
 
-Provider.propTypes = {
+ProviderExpense.propTypes = {
   provider: PropTypes.object.isRequired,
+  billing: PropTypes.object,
   getProvider: PropTypes.func.isRequired,
 };
 
-Provider.displayName = 'Provider';
+ProviderExpense.displayName = 'ProviderExpense';
 
-export const story = Provider;
-export default memo(Provider);
+export const story = ProviderExpense;
+export default memo(ProviderExpense);

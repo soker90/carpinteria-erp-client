@@ -72,11 +72,6 @@ const routesConfig = [
       },
       {
         exact: true,
-        path: '/app/albaranes/:idDeliveryOrder',
-        component: lazy(() => import('pages/DeliveryOrder')),
-      },
-      {
-        exact: true,
         path: '/app/facturas/:idInvoice',
         component: lazy(() => import('pages/Invoice')),
       },
@@ -103,17 +98,7 @@ const routesConfig = [
       {
         exact: true,
         path: '/app/gastos/:idProvider',
-        component: lazy(() => import('pages/Providers/ProviderExpense')),
-      },
-      {
-        exact: true,
-        path: '/app/gastos',
-        component: lazy(() => import('pages/Expenses')),
-      },
-      {
-        exact: true,
-        path: '/app/proveedores/general/:idProvider',
-        component: lazy(() => import('pages/Providers/ProviderGeneral')),
+        component: lazy(() => import('pages/Providers/Provider')),
       },
       {
         exact: true,
