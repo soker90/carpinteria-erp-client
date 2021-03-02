@@ -1,5 +1,4 @@
 import { useRef, useState } from 'react';
-import { Link as RouterLink } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import {
   Avatar, Box, ButtonBase, Hidden, makeStyles, Menu, MenuItem, Typography,
@@ -72,18 +71,6 @@ function Account() {
         anchorEl={ref.current}
         open={isOpen}
       >
-        <MenuItem
-          component={RouterLink}
-          to='/app/social/profile'
-        >
-          Perfil
-        </MenuItem>
-        <MenuItem
-          component={RouterLink}
-          to='/app/account'
-        >
-          Cuenta
-        </MenuItem>
         <MenuItem onClick={handleLogout}>
           Salir
         </MenuItem>

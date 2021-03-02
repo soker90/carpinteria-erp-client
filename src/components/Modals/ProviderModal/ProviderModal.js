@@ -1,12 +1,10 @@
 import { memo } from 'react';
 import PropTypes from 'prop-types';
-import { FormControlLabel, Switch } from '@material-ui/core';
 
-import { InputForm, ModalGrid, SelectForm } from 'components';
-import { TYPE_PROVIDER_LIST } from '../../../constants';
+import { InputForm, ModalGrid } from 'components';
 
 const ProviderModal = ({
-  show, close, state, setState, action, hasType, ...rest
+  show, close, state, setState, action, ...rest
 }) => {
   /**
    * Handle event onChange input
@@ -73,41 +71,6 @@ const ProviderModal = ({
       {_renderInput('phone', 'Teléfono')}
       {_renderInput('email', 'Correo electrónico')}
       {_renderInput('note', 'Nota')}
-
-      {hasType && (
-        <SelectForm
-          label='Tipo'
-          value={state.type}
-          name='type'
-          onChange={_handleChange}
-          size={6}
-          InputLabelProps={{
-            shrink: true,
-          }}
-          onKeyPress={_handleKeyPress}
-        >
-          {TYPE_PROVIDER_LIST.map((item, idx) => (
-            // eslint-disable-next-line react/no-array-index-key
-            <option key={idx} value={item}>
-              {item}
-            </option>
-          ))}
-        </SelectForm>
-      )}
-      {/* Todo terminar */}
-      {false && (
-      <FormControlLabel
-        control={(
-          <Switch
-            checked={state.canal}
-            onChange={_handleChange}
-            name='canal'
-            color='primary'
-          />
-        )}
-        label='Tiene canal'
-      />
-      )}
     </ModalGrid>
   );
 };
@@ -118,11 +81,6 @@ ProviderModal.propTypes = {
   state: PropTypes.object.isRequired,
   setState: PropTypes.func.isRequired,
   action: PropTypes.func.isRequired,
-  hasType: PropTypes.bool,
-};
-
-ProviderModal.defaultProps = {
-  hasType: false,
 };
 
 ProviderModal.displayName = 'ProviderModal';

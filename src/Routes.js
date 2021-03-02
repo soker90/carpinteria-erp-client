@@ -45,18 +45,8 @@ const routesConfig = [
           },
           {
             exact: true,
-            path: '/app/informes/productos',
-            component: lazy(() => import('pages/reports/ProductsReport')),
-          },
-          {
-            exact: true,
             path: '/app/informes/facturacion/:year',
             component: lazy(() => import('pages/reports/Billing')),
-          },
-          {
-            exact: true,
-            path: '/app/informes/albaranes/:year',
-            component: lazy(() => import('pages/reports/DeliveryOrders')),
           },
         ],
       },
@@ -69,11 +59,6 @@ const routesConfig = [
         exact: true,
         path: '/app/proveedores/:idProvider',
         component: lazy(() => import('pages/Providers/Provider')),
-      },
-      {
-        exact: true,
-        path: '/app/albaranes/:idDeliveryOrder',
-        component: lazy(() => import('pages/DeliveryOrder')),
       },
       {
         exact: true,
@@ -103,27 +88,12 @@ const routesConfig = [
       {
         exact: true,
         path: '/app/gastos/:idProvider',
-        component: lazy(() => import('pages/Providers/ProviderExpense')),
-      },
-      {
-        exact: true,
-        path: '/app/gastos',
-        component: lazy(() => import('pages/Expenses')),
-      },
-      {
-        exact: true,
-        path: '/app/proveedores/general/:idProvider',
-        component: lazy(() => import('pages/Providers/ProviderGeneral')),
+        component: lazy(() => import('pages/Providers/Provider')),
       },
       {
         exact: true,
         path: '/app/intercambio',
         component: lazy(() => import('pages/SwapInvoices')),
-      },
-      {
-        exact: true,
-        path: '/app/precios',
-        component: lazy(() => import('pages/PriceChanges')),
       },
       {
         path: '/app/clientes',

@@ -6,12 +6,10 @@ import { Container, Grid } from '@material-ui/core';
 
 import { Header, Page } from 'components';
 import { useStyles } from './DashboardView.styles';
-import PricesChangesBox from './PricesChangesBox';
 import Reminders from './Reminders';
 import DeleteConfirmationModal from '../modals/DeleteConfirmationModal';
 
 const DashboardView = ({
-  priceChanges,
   getDashboard,
   reminders,
   createReminder,
@@ -41,7 +39,6 @@ const DashboardView = ({
             container
             spacing={3}
           >
-            <PricesChangesBox priceChanges={priceChanges} />
             <Reminders
               reminders={reminders}
               createReminder={createReminder}
@@ -58,7 +55,6 @@ const DashboardView = ({
 DashboardView.displayName = 'DashboardView';
 
 DashboardView.propTypes = {
-  priceChanges: PropTypes.number,
   getDashboard: PropTypes.func.isRequired,
   reminders: PropTypes.array.isRequired,
   createReminder: PropTypes.func.isRequired,

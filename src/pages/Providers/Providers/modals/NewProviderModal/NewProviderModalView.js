@@ -2,21 +2,15 @@ import { memo, useEffect, useReducer } from 'react';
 import PropTypes from 'prop-types';
 
 import ProviderModal, { INITIAL_STATE } from 'components/Modals/ProviderModal';
-import { TYPE_PROVIDER } from 'constants/providers';
 
 const NewProviderModal = ({
   show,
   close,
   createProvider,
 }) => {
-  const initialStateNew = {
-    ...INITIAL_STATE,
-    type: TYPE_PROVIDER.GENERAL,
-  };
-
   const [state, setState] = useReducer(
     (oldState, newState) => ({ ...oldState, ...newState }),
-    initialStateNew,
+    INITIAL_STATE,
   );
 
   useEffect(() => {
@@ -39,7 +33,6 @@ const NewProviderModal = ({
       action={_handleSubmit}
       state={state}
       setState={setState}
-      hasType
     />
   );
 };
