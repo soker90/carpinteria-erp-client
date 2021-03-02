@@ -1,12 +1,12 @@
 import axios from 'axios';
-import {GET_PROVIDERS} from '../types';
+import { GET_PROVIDERS } from '../types';
 
 /**
  * Request action for getInitData
  * @returns {{type: string}}
  * @private
  */
-const _getProvidersRequest = () => ({type: GET_PROVIDERS.REQUEST});
+const _getProvidersRequest = () => ({ type: GET_PROVIDERS.REQUEST });
 
 /**
  * Success action for getInitData
@@ -43,7 +43,7 @@ export const getProviders = () => async dispatch => {
   dispatch(_getProvidersRequest());
 
   try {
-    const {data} = await axios(`providers?type=standard`);
+    const { data } = await axios('providers');
 
     dispatch(_getProvidersSuccess());
     dispatch(_getProvidersSet(data));

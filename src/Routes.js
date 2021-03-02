@@ -45,18 +45,8 @@ const routesConfig = [
           },
           {
             exact: true,
-            path: '/app/informes/productos',
-            component: lazy(() => import('pages/reports/ProductsReport')),
-          },
-          {
-            exact: true,
             path: '/app/informes/facturacion/:year',
             component: lazy(() => import('pages/reports/Billing')),
-          },
-          {
-            exact: true,
-            path: '/app/informes/albaranes/:year',
-            component: lazy(() => import('pages/reports/DeliveryOrders')),
           },
         ],
       },
@@ -104,11 +94,6 @@ const routesConfig = [
         exact: true,
         path: '/app/intercambio',
         component: lazy(() => import('pages/SwapInvoices')),
-      },
-      {
-        exact: true,
-        path: '/app/precios',
-        component: lazy(() => import('pages/PriceChanges')),
       },
       {
         path: '/app/clientes',
