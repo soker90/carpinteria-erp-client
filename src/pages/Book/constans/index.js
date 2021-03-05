@@ -4,7 +4,6 @@ export const INITIAL_STATE = {
   dateInvoice: null,
   nInvoice: '',
   nameProvider: '',
-  expenses: false,
 };
 
 export const fields = [

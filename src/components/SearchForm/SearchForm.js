@@ -1,5 +1,7 @@
 /* eslint-disable react/prop-types */
-import { memo, useEffect } from 'react';
+import {
+  memo, useEffect, useReducer,
+} from 'react';
 import PropTypes from 'prop-types';
 import {
   Card,
@@ -10,24 +12,33 @@ import {
 } from '@material-ui/core';
 
 import {
-  DatePickerForm,
   InputForm,
-} from 'components';
+} from 'components/index';
+import { useDebounce } from 'hooks';
 
 import { useStyles } from './SearchForm.styles';
-import { fields } from '../../constans';
 
 const SearchForm = ({
-  getInvoices,
-  year,
-  state,
-  setState,
+  get,
+  initialState,
+  fields,
 }) => {
+  const [state, setState] = useReducer(
+    (oldstate, newState) => ({ ...oldstate, ...newState }),
+    initialState,
+  );
   const classes = useStyles();
+  const debounce = useDebounce();
 
   useEffect(() => {
-    getInvoices();
-  }, [state.expenses, state.dateInvoice, year]);
+    get();
+  }, []);
+
+  useEffect(() => {
+    debounce(() => {
+      get(state);
+    }, 500);
+  }, [state]);
 
   /**
    * Handle event onChange input
@@ -51,16 +62,7 @@ const SearchForm = ({
    * @private
    */
   const _handleKeyPress = ({ key }) => {
-    if (key === 'Enter') getInvoices();
-  };
-
-  /**
-   * Handle change picker
-   * @param {String} date
-   * @private
-   */
-  const _handleChangePicker = date => {
-    setState({ dateInvoice: date });
+    if (key === 'Enter') get();
   };
 
   /**
@@ -96,13 +98,6 @@ const SearchForm = ({
       <Divider />
       <CardContent>
         <Grid spacing={3} container>
-          <DatePickerForm
-            clearable
-            size={2}
-            label='Fecha factura'
-            value={state.dateInvoice}
-            onAccept={_handleChangePicker}
-          />
           {fields.map(_renderInput)}
         </Grid>
       </CardContent>
@@ -111,10 +106,9 @@ const SearchForm = ({
 };
 
 SearchForm.propTypes = {
-  getInvoices: PropTypes.func.isRequired,
-  year: PropTypes.string.isRequired,
-  state: PropTypes.object.isRequired,
-  setState: PropTypes.func.isRequired,
+  get: PropTypes.func.isRequired,
+  initialState: PropTypes.object.isRequired,
+  fields: PropTypes.array.isRequired,
 };
 
 SearchForm.displayName = 'SearchForm';

@@ -33,7 +33,6 @@ const Book = ({
       numCheque,
       nInvoice,
       nameProvider,
-      expenses,
     } = state;
     getInvoices(year, {
       ...(dateInvoice && { dateInvoice: format.dateToSend(dateInvoice) }),
@@ -41,7 +40,6 @@ const Book = ({
       ...(numCheque && { numCheque }),
       ...(nInvoice && { nInvoice }),
       ...(nameProvider && { nameProvider }),
-      ...(expenses && { expenses }),
       ...pagination,
     });
   }, [state, year]);

@@ -1,5 +1,5 @@
 import {
-  memo, useCallback, useEffect, useState,
+  memo, useCallback, useState,
 } from 'react';
 import { Box, Container } from '@material-ui/core';
 import PropTypes from 'prop-types';
@@ -8,17 +8,20 @@ import { Link } from 'react-router-dom';
 import VisibilityIcon from '@material-ui/icons/Visibility';
 
 import { BASE_PATH } from 'constants/index';
-import { Header, Page, TableMaterial } from 'components';
+import {
+  Header, Page, SearchForm, TableMaterial,
+} from 'components';
+
+import { fields, INITIAL_STATE } from '../constans';
 import { useStyles } from './Clients.styles';
 import NewProviderModal from '../modals/NewClientModal';
 
-const Clients = ({ clients, getClients }) => {
+const Clients = ({
+  clients,
+  getClients,
+}) => {
   const classes = useStyles();
   const [showModal, setShowModal] = useState(false);
-
-  useEffect(() => {
-    getClients();
-  }, [getClients]);
 
   const _hrefRow = ({ _id }) => `${BASE_PATH}/clientes/${_id}`;
 
@@ -42,6 +45,11 @@ const Clients = ({ clients, getClients }) => {
                 label: 'Nuevo Cliente',
               },
             ]}
+          />
+          <SearchForm
+            get={getClients}
+            fields={fields}
+            initialState={INITIAL_STATE}
           />
           <Box mt={3}>
             <TableMaterial

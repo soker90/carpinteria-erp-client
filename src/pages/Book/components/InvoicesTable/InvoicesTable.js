@@ -46,6 +46,11 @@ const InvoicesTable = ({ invoices, count, getInvoices }) => {
           // eslint-disable-next-line react/prop-types
           render: ({ total }) => <TextEuro num={total} />,
         },
+        {
+          title: 'Pago',
+          // eslint-disable-next-line react/prop-types
+          field: 'payment.type',
+        },
       ]}
       data={invoices}
       actions={[

@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { objectToParams } from 'utils';
 import { GET_CLIENTS } from '../types';
 
 /**
@@ -39,11 +40,11 @@ const _getClientsError = error => ({
  * Trae los clientes
  * @returns {function(...[*]=)}
  */
-export const getClients = () => async dispatch => {
+export const getClients = (filters = {}) => async dispatch => {
   dispatch(_getClientsRequest());
 
   try {
-    const { data } = await axios('clients');
+    const { data } = await axios(`clients${objectToParams(filters)}`);
 
     dispatch(_getClientsSuccess());
     dispatch(_getClientsSet(data));
