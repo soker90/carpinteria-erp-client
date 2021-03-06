@@ -4,14 +4,18 @@ import { Link } from 'react-router-dom';
 import VisibilityIcon from '@material-ui/icons/Visibility';
 
 import { TableMaterial, TextEuro } from 'components';
-import { BASE_PATH, INVOICE_COMMON_CONCEPTS } from 'constants/index';
+import { BASE_PATH } from 'constants/index';
 import { format } from 'utils';
 import { useStyles } from './InvoicesTable.styles';
 
-const InvoicesTable = ({ invoices, count, getInvoices }) => {
+const InvoicesTable = ({
+  invoices,
+  count,
+  getInvoices,
+}) => {
   const classes = useStyles();
 
-  const _rowStyle = ({ concept }) => (INVOICE_COMMON_CONCEPTS.includes(concept) ? '' : classes.rowRed);
+  const _rowStyle = ({ payment }) => (payment?.paid ? '' : classes.rowRed);
 
   return (
     <TableMaterial
@@ -45,11 +49,6 @@ const InvoicesTable = ({ invoices, count, getInvoices }) => {
           title: 'Importe',
           // eslint-disable-next-line react/prop-types
           render: ({ total }) => <TextEuro num={total} />,
-        },
-        {
-          title: 'Pago',
-          // eslint-disable-next-line react/prop-types
-          field: 'payment.type',
         },
       ]}
       data={invoices}

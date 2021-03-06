@@ -24,7 +24,6 @@ const InvoiceData = ({
   nInvoice,
   nOrder,
   className,
-  isEditable,
   concept,
   id,
   mailSend,
@@ -45,7 +44,7 @@ const InvoiceData = ({
    * @returns {Array || false}
    * @private
    */
-  const _getActions = () => (isEditable ? [
+  const _getActions = () => [
     <Tooltip title='Editar' key={uniqId()}>
       <IconButton
         size='small'
@@ -54,7 +53,7 @@ const InvoiceData = ({
         <EditIcon />
       </IconButton>
     </Tooltip>,
-  ] : false);
+  ];
 
   return (
     <>
@@ -113,7 +112,6 @@ InvoiceData.propTypes = {
   nInvoice: PropTypes.string,
   nOrder: PropTypes.number,
   className: PropTypes.string.isRequired,
-  isEditable: PropTypes.bool.isRequired,
   concept: PropTypes.string,
   id: PropTypes.string.isRequired,
   mailSend: PropTypes.bool,

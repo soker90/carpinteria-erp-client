@@ -5,7 +5,7 @@ import {
   DatePickerForm, InputForm, ModalGrid, SelectForm,
 } from 'components';
 import { format } from 'utils';
-import { COLUMNS_INVOICES, EXPENSE_CONCEPTS, TYPE_PAYMENT } from 'constants/invoices';
+import { COLUMNS_INVOICES, INVOICES_CONCEPTS, TYPE_PAYMENT } from 'constants/invoices';
 import AutocompleteForm from 'components/Forms/AutocompleteForm';
 
 const INITIAL_STATE = {
@@ -13,7 +13,7 @@ const INITIAL_STATE = {
   dateInvoice: null,
   dateRegister: null,
   total: '',
-  concept: EXPENSE_CONCEPTS[0],
+  concept: INVOICES_CONCEPTS[0],
   type: TYPE_PAYMENT[0],
   paymentDate: null,
   bookColumn: '',
@@ -165,7 +165,7 @@ const NewInvoiceModal = ({
   const _renderAutocomplete = () => (
     <AutocompleteForm
       disableClearable
-      options={EXPENSE_CONCEPTS}
+      options={INVOICES_CONCEPTS}
       value={state.concept}
       name='concept'
       label='Concepto'

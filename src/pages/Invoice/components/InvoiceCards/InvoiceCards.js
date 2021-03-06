@@ -1,8 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { useMemo } from 'react';
 import PropTypes from 'prop-types';
 
-import { isInvoiceEditable } from 'pages/Invoice/utils';
 import InvoiceData from './components/InvoiceData';
 import InvoiceTotals from './components/InvoiceTotals';
 import InvoicePayment from './components/InvoicePayment';
@@ -13,12 +11,10 @@ const InvoiceCards = ({
 }) => {
   const classes = useStyles();
 
-  const isEditable = useMemo(() => isInvoiceEditable(data), [data.nOrder, data.concept]);
-
   return (
     <>
-      <InvoiceData {...data} className={classes.data} isEditable={isEditable} id={id} />
-      <InvoiceTotals {...totals} isEditable={isEditable} className={classes.totals} />
+      <InvoiceData {...data} className={classes.data} id={id} />
+      <InvoiceTotals {...totals} className={classes.totals} />
       {payment && <InvoicePayment {...payment} className={classes.data} />}
     </>
   );

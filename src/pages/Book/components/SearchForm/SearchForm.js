@@ -83,7 +83,7 @@ const SearchForm = ({
       name={id}
       label={label}
       onKeyPress={_handleKeyPress}
-      size={2}
+      size={3}
       {...options}
     />
   );
@@ -98,7 +98,7 @@ const SearchForm = ({
         <Grid spacing={3} container>
           <DatePickerForm
             clearable
-            size={2}
+            size={3}
             label='Fecha factura'
             value={state.dateInvoice}
             onAccept={_handleChangePicker}

@@ -25,17 +25,13 @@ export const TYPE_PAYMENT = [
   '?', 'Efectivo', 'Talón', 'Giro', 'c/c', 'Abono', 'Transferencia', 'Tarjeta', 'Contra rembolso',
 ];
 
-export const INVOICE_COMMON_CONCEPTS = [
-  CONCEPT.COMPRAS,
-  CONCEPT.DEV,
-  CONCEPT.ABONO,
-];
-
-export const EXPENSE_CONCEPTS = [
+export const INVOICES_CONCEPTS = [
   ' ',
   CONCEPT.ABONO,
   CONCEPT.AGUA,
   CONCEPT.ALQUILER,
+  CONCEPT.COMPRAS,
+  CONCEPT.DEV,
   CONCEPT.GASOIL,
   CONCEPT.GESTORIA,
   CONCEPT.LUZ,

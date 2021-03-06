@@ -1,7 +1,7 @@
 import { PieChart as PieChartIcon, ShoppingCart, Users as UsersIcon } from 'react-feather';
 import MenuBookIcon from '@material-ui/icons/MenuBook';
 import EuroIcon from '@material-ui/icons/Euro';
-import PostAddIcon from '@material-ui/icons/PostAdd';
+// import PostAddIcon from '@material-ui/icons/PostAdd';
 import DescriptionIcon from '@material-ui/icons/Description';
 import SwapHorizIcon from '@material-ui/icons/SwapHoriz';
 
@@ -27,7 +27,7 @@ export const navConfig = [
     subheader: 'Clientes',
     items: [
       {
-        title: 'Listado',
+        title: 'Clientes',
         icon: UsersIcon,
         href: '/app/clientes/listado',
       },
@@ -52,7 +52,7 @@ export const navConfig = [
         href: '/app/proveedores',
       },
       {
-        title: 'Facturas',
+        title: 'Libro',
         icon: MenuBookIcon,
         href: `/app/libro/${year}`,
       },
@@ -61,11 +61,11 @@ export const navConfig = [
         icon: EuroIcon,
         href: '/app/pagos',
       },
-      {
+      /* {
         title: 'Notas',
         icon: PostAddIcon,
         href: '/app/notas',
-      },
+      }, */
     ],
   },
   {

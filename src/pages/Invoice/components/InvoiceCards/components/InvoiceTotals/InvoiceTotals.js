@@ -16,7 +16,11 @@ import { ItemCard } from 'components';
 import EditInvoiceTotalsModal from 'pages/Invoice/modals/EditInvoiceTotalsModal';
 
 const InvoiceTotals = ({
-  iva, re, total, taxBase, isEditable, className,
+  iva,
+  re,
+  total,
+  taxBase,
+  className,
 }) => {
   const [showModal, setShowModal] = useState(false);
 
@@ -33,7 +37,7 @@ const InvoiceTotals = ({
    * @returns {Array || false}
    * @private
    */
-  const _getActions = () => (isEditable ? [
+  const _getActions = () => [
     <Tooltip title='Editar' key={uniqId()}>
       <IconButton
         size='small'
@@ -42,7 +46,7 @@ const InvoiceTotals = ({
         <EditIcon />
       </IconButton>
     </Tooltip>,
-  ] : false);
+  ];
 
   return (
     <>
@@ -55,14 +59,14 @@ const InvoiceTotals = ({
         <CardContent>
           <Grid container spacing={3}>
             {taxBase && (
-            <Grid item xs={12} md={3}>
-              <ItemCard label='Base imponible' value={taxBase} variant='euro' />
-            </Grid>
+              <Grid item xs={12} md={3}>
+                <ItemCard label='Base imponible' value={taxBase} variant='euro' />
+              </Grid>
             )}
             {iva && (
-            <Grid item xs={12} md={3}>
-              <ItemCard label='IVA' value={iva} variant='euro' />
-            </Grid>
+              <Grid item xs={12} md={3}>
+                <ItemCard label='IVA' value={iva} variant='euro' />
+              </Grid>
             )}
             {re && (
               <Grid item xs={12} md={3}>
@@ -85,7 +89,6 @@ InvoiceTotals.propTypes = {
   re: PropTypes.number,
   total: PropTypes.number.isRequired,
   taxBase: PropTypes.number,
-  isEditable: PropTypes.bool.isRequired,
   className: PropTypes.string.isRequired,
 };
 

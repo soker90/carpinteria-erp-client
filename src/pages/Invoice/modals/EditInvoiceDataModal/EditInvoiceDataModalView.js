@@ -5,7 +5,7 @@ import {
   DatePickerForm, InputForm, ModalGrid, SelectForm, SwitchForm,
 } from 'components';
 import format from 'utils/format';
-import { INVOICE_COMMON_CONCEPTS } from 'constants/invoices';
+import { INVOICES_CONCEPTS } from 'constants/invoices';
 
 const EditInvoiceDataModalView = ({
   show,
@@ -151,7 +151,7 @@ const EditInvoiceDataModalView = ({
       }}
       onKeyPress={_handleKeyPress}
     >
-      {INVOICE_COMMON_CONCEPTS.map(item => (
+      {INVOICES_CONCEPTS.map(item => (
         <option key={item} value={item}>
           {item}
         </option>

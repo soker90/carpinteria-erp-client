@@ -2,9 +2,9 @@ import { memo } from 'react';
 import PropTypes from 'prop-types';
 import SkipNextIcon from '@material-ui/icons/SkipNext';
 import SkipPreviousIcon from '@material-ui/icons/SkipPrevious';
+import { NavLink } from 'react-router-dom';
 
 import { Header } from 'components';
-import { NavLink } from 'react-router-dom';
 
 const HeaderBook = ({ year }) => (
   <Header
