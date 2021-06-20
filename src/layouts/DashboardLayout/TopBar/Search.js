@@ -1,3 +1,4 @@
+/* eslint-disable react/destructuring-assignment */
 import { memo, useRef, useState } from 'react';
 import {
   ClickAwayListener,
