@@ -1,12 +1,12 @@
 /* eslint-disable react/destructuring-assignment */
 import { memo } from 'react';
 import PropTypes from 'prop-types';
+import { Grid, List } from '@material-ui/core';
 import uniqId from 'uniqid';
 
-import { Grid, List } from '@material-ui/core';
 import { ItemCard } from 'components/Cards';
 import { sliceToGroups } from 'utils';
-import { useStyles } from 'components/Cards/ItemGroupsCard/ItemGroupsCard.styles';
+import { useStyles } from './ItemGroupsCard.styles';
 
 const ItemGroupsCard = ({ groups, items }) => {
   const classes = useStyles();
