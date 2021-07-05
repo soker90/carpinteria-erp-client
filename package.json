@@ -60,20 +60,20 @@
     "uniqid": "^5.3.0"
   },
   "devDependencies": {
-    "@babel/core": "^7.14.5",
-    "@storybook/addon-actions": "^6.2.9",
-    "@storybook/addon-docs": "^6.2.9",
+    "@babel/core": "^7.14.6",
+    "@storybook/addon-actions": "^6.3.1",
+    "@storybook/addon-docs": "^6.3.1",
     "@storybook/addon-knobs": "^6.2.9",
-    "@storybook/addon-links": "^6.2.9",
-    "@storybook/addons": "^6.2.9",
-    "@storybook/node-logger": "^6.2.9",
+    "@storybook/addon-links": "^6.3.1",
+    "@storybook/addons": "^6.3.1",
+    "@storybook/node-logger": "^6.3.1",
     "@storybook/preset-create-react-app": "^3.1.7",
-    "@storybook/react": "^6.2.9",
-    "@storybook/storybook-deployer": "^2.8.8",
+    "@storybook/react": "^6.3.1",
+    "@storybook/storybook-deployer": "^2.8.10",
     "@testing-library/jest-dom": "^5.14.1",
-    "@testing-library/react": "^11.2.7",
+    "@testing-library/react": "^12.0.0",
     "@testing-library/react-hooks": "^7.0.0",
-    "chromatic": "^5.9.0",
+    "chromatic": "^5.9.2",
     "eslint-config-airbnb": "^18.2.1",
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-import": "^2.23.4",
@@ -82,6 +82,6 @@
     "eslint-plugin-prettier": "^3.4.0",
     "eslint-plugin-react": "^7.24.0",
     "eslint-plugin-react-hooks": "^4.2.0",
-    "prettier": "^2.3.1"
+    "prettier": "^2.3.2"
   }
 }
