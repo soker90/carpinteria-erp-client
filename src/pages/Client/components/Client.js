@@ -17,6 +17,7 @@ const Client = ({
   client,
   getClient,
   createClientInvoice,
+  createDeliveryOrder,
 }) => {
   const classes = useStyles();
   const { id } = useParams();
@@ -69,6 +70,7 @@ const Client = ({
           clientId={id}
           createClientInvoice={createClientInvoice}
           currentTab={currentTab}
+          createDeliveryOrder={createDeliveryOrder}
         />
 
         <ClientExpandedInfo
@@ -93,6 +95,7 @@ Client.propTypes = {
   client: PropTypes.object.isRequired,
   getClient: PropTypes.func.isRequired,
   createClientInvoice: PropTypes.func.isRequired,
+  createDeliveryOrder: PropTypes.func.isRequired,
 };
 
 Client.displayName = 'Client';

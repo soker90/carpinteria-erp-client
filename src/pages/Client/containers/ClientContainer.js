@@ -1,6 +1,11 @@
 import { connect } from 'react-redux';
 
-import { getClient, getClientInvoices, createClientInvoice } from '../modules/actions';
+import {
+  getClient,
+  getClientInvoices,
+  createClientInvoice,
+  createDeliveryOrder,
+} from '../modules/actions';
 import Client from '../components/Client';
 
 const mapStateToProps = ({ client }) => client;
@@ -9,6 +14,7 @@ const mapDispatchToProps = {
   getClient,
   getClientInvoices,
   createClientInvoice,
+  createDeliveryOrder,
 };
 
 export default connect(

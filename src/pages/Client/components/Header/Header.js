@@ -13,13 +13,14 @@ const HeaderProvider = ({
   clientId,
   createClientInvoice,
   currentTab,
+  createDeliveryOrder,
 }) => {
   const _handleClickNewInvoice = () => {
     createClientInvoice(clientId);
   };
 
   const _handleClickNewDeliveryOrder = () => {
-
+    createDeliveryOrder(clientId);
   };
 
   const _handleClickNewBudget = () => {
@@ -60,6 +61,7 @@ HeaderProvider.propTypes = {
   onExpand: PropTypes.func.isRequired,
   expanded: PropTypes.bool.isRequired,
   createClientInvoice: PropTypes.func.isRequired,
+  createDeliveryOrder: PropTypes.func.isRequired,
   clientId: PropTypes.string,
   currentTab: PropTypes.string.isRequired,
 };

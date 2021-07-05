@@ -8,7 +8,10 @@ import { BASE_PATH } from 'constants/index';
 import { format } from 'utils';
 
 const ClientDeliveryOrders = ({
-  deliveryOrders, idClient, count, getClientDeliveryOrders,
+  deliveryOrders,
+  idClient,
+  count,
+  getDeliveryOrders,
 }) => {
   if (!idClient) return <LoadingScreen />;
 
@@ -40,8 +43,15 @@ const ClientDeliveryOrders = ({
         },
       ]}
       count={count}
-      refresh={({ offset, limit }) => {
-        getClientDeliveryOrders(idClient, offset, limit);
+      refresh={({
+        offset,
+        limit,
+      }) => {
+        getDeliveryOrders({
+          client: idClient,
+          offset,
+          limit,
+        });
       }}
     />
   );
@@ -51,7 +61,7 @@ ClientDeliveryOrders.propTypes = {
   deliveryOrders: PropTypes.array.isRequired,
   idClient: PropTypes.string,
   count: PropTypes.number.isRequired,
-  getClientDeliveryOrders: PropTypes.func.isRequired,
+  getDeliveryOrders: PropTypes.func.isRequired,
 };
 
 ClientDeliveryOrders.displayName = 'ProviderInvoices';

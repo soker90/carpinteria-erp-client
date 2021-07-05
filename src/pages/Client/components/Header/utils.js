@@ -25,7 +25,6 @@ export const getButtons = ({
     Icon: PostAddIcon,
     disableSvg: true,
     label: 'Nuevo albarán',
-    disabled: true,
   }],
   [TABS.BUDGET]: [{
     variant: 'contained',
